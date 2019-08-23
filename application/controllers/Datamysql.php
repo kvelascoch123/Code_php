@@ -59,8 +59,28 @@ public function test_get(){
   echo $someObject[0]->name; // Access Object data
 
 }
-}
 
+
+public function saveFacturasPorCobrar_get(){
+  //obtener data
+  $user =file_get_contents('http://localhost/API_wordpress/index.php/almacenpgsql/getData');
+  $someArray = json_decode($user, true); //transformar data
+  //recorrer data   
+  for ($i=0; $i < count($someArray) ; $i++) { 
+      //insertar campos 
+      $insertar = array('numerofactura'=> $someArray[$i]["numerofactura"],
+                        'nombrevendedor' => $someArray[$i]["nombrevendedor"],
+                        'fechaemisionfactura' => $someArray[$i]["fechaemisionfactura"],
+                        'fechacaducidadfactura' => $someArray[$i]["fechacaducidadfactura"],
+                        'pagado' => $someArray[$i]["pagado"],
+                        'totalfactura' => $someArray[$i]["totalfactura"],
+                                        );
+      $this->db->insert('facturas_por_cobrar', $insertar);
+  
+  }
+    
+}
+}
 //CODIGOS DE AYUDA
     // ****FORMAR UN FICHERO ********
 /*
