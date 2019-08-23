@@ -18,19 +18,14 @@ class Prueba extends REST_Controller {
 		$this->load->database();
 	}
 
-	public function index(){
-		echo "Hola Prueba";
-	}
-
-
- // TEST POSTGRES : http://localhost/API_wordpress/index.php/prueba/obtener_datos
+	// TEST POSTGRES : http://localhost/API_wordpress/index.php/prueba/obtener_datos
 	public function obtener_datos_get(){
 
 	$query = $this->db->query('SELECT * FROM users');
-	
+
     $data = $query->result_array();
    
-	$this->response( $data); // mismo formato JSON
+	$this->response( $data); 
 
 }
 

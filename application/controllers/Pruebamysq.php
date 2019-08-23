@@ -20,23 +20,13 @@ class Pruebamysq extends REST_Controller {
 
 	}
 
-	public function index(){
-		echo "Hola Prueba B";
-	}
-
-
- // TEST POSTGRES : http://localhost/API_wordpress/index.php/prueba/obtener_datos
+ // OBTENER DATOS MYSQL : http://localhost/API_wordpress/index.php/prueba/obtener_datos
 	public function obtener_datos_get(){
-
 	$query = $this->db->query('SELECT * FROM users_test');
-    
     $respuesta = array(
         'users'=> $query->result_array()
     );
-	$this->response( $respuesta); // mismo formato JSON
-
-	//$query->result();
-	//echo json_encode($query->result());
+	$this->response( $respuesta); 
 }
 
 

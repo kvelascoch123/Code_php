@@ -22,12 +22,10 @@ class Datamysql extends REST_Controller {
 	}
 
 // HTTP , consumir API...
-	public function send_get(){
-
+	public function send_get(){ //enviar datos a BD MYSQL
        //obtener data
         $user =file_get_contents('http://localhost/API_wordpress/index.php/prueba/obtener_datos');
         $someArray = json_decode($user, true); //transformar data
-       // print_r($someArray);        // Dump all data of the Array
         //recorrer data   
         for ($i=0; $i < count($someArray) ; $i++) { 
             //insertar campos 
@@ -37,6 +35,11 @@ class Datamysql extends REST_Controller {
         
         }
 
+}
+// ELIMINAR DATOS DE MI TABLA..para actualizar
+public function truncate_get(){
+    $table = 'users_test';
+    $this->db->truncate($table);
 }
 
 
